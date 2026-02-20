@@ -432,19 +432,21 @@ class TaskcDetailsController extends GetxController {
           '${SentenceManager(currentLanguage: AppSettings.selectedLanguage).sentences.select} $label',
           style: TextStyle(color: tColors.primaryTextColor),
         ),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: options.map((option) {
-            return RadioListTile<String>(
-              title: Text(
-                option,
-                style: TextStyle(color: tColors.primaryTextColor),
-              ),
-              value: option,
-              groupValue: initialValue,
-              onChanged: (value) => Get.back(result: value),
-            );
-          }).toList(),
+        content: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: options.map((option) {
+              return RadioListTile<String>(
+                title: Text(
+                  option,
+                  style: TextStyle(color: tColors.primaryTextColor),
+                ),
+                value: option,
+                groupValue: initialValue,
+                onChanged: (value) => Get.back(result: value),
+              );
+            }).toList(),
+          ),
         ),
       ),
     );

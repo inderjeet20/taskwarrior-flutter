@@ -375,8 +375,13 @@ class AttributeWidget extends StatelessWidget {
                     final options = [
                       'None',
                       'daily',
+                      'weekdays',
                       'weekly',
+                      'biweekly',
                       'monthly',
+                      'bimonthly',
+                      'quarterly',
+                      'semiannual',
                       'yearly',
                     ];
                     final selected = await showDialog<String>(
@@ -388,21 +393,23 @@ class AttributeWidget extends StatelessWidget {
                             style: TextStyle(color: tColors.primaryTextColor),
                           ),
                           backgroundColor: tColors.dialogBackgroundColor,
-                          content: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: options
-                                .map(
-                                  (option) => ListTile(
-                                    title: Text(
-                                      option,
-                                      style: TextStyle(
-                                          color: tColors.primaryTextColor),
+                          content: SingleChildScrollView(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: options
+                                  .map(
+                                    (option) => ListTile(
+                                      title: Text(
+                                        option,
+                                        style: TextStyle(
+                                            color: tColors.primaryTextColor),
+                                      ),
+                                      onTap: () => Navigator.of(dialogContext)
+                                          .pop(option),
                                     ),
-                                    onTap: () =>
-                                        Navigator.of(dialogContext).pop(option),
-                                  ),
-                                )
-                                .toList(),
+                                  )
+                                  .toList(),
+                            ),
                           ),
                         );
                       },

@@ -249,10 +249,9 @@ class AddTaskBottomSheet extends StatelessWidget {
           key: ValueKey('date-picker-${homeController.recur.value}'),
           initialDates: List<DateTime?>.from(homeController.selectedDates),
           onDateChanges: (List<DateTime?> p0) {
-            final previousDue =
-                homeController.selectedDates.isNotEmpty
-                    ? homeController.selectedDates[0]
-                    : null;
+            final previousDue = homeController.selectedDates.isNotEmpty
+                ? homeController.selectedDates[0]
+                : null;
             homeController.selectedDates.value = p0;
             final nextDue = p0.isNotEmpty ? p0[0] : null;
             if (previousDue != nextDue) {
@@ -345,8 +344,30 @@ class AddTaskBottomSheet extends StatelessWidget {
       );
 
   Widget buildRecurrenceSelector(BuildContext context) {
-    final options = ['', 'daily', 'weekly', 'monthly', 'yearly'];
-    final labels = ['None', 'Daily', 'Weekly', 'Monthly', 'Yearly'];
+    final options = [
+      '',
+      'daily',
+      'weekdays',
+      'weekly',
+      'biweekly',
+      'monthly',
+      'bimonthly',
+      'quarterly',
+      'semiannual',
+      'yearly',
+    ];
+    final labels = [
+      'None',
+      'Daily',
+      'Weekdays',
+      'Weekly',
+      'Biweekly',
+      'Monthly',
+      'Bimonthly',
+      'Quarterly',
+      'Semiannual',
+      'Yearly',
+    ];
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -360,6 +381,7 @@ class AddTaskBottomSheet extends StatelessWidget {
         const SizedBox(height: 8),
         Obx(() => Wrap(
               spacing: 8,
+              runSpacing: 4,
               children: List.generate(options.length, (index) {
                 final isSelected = homeController.recur.value == options[index];
                 return ChoiceChip(

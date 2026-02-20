@@ -117,7 +117,18 @@ class TaskcDetailsView extends GetView<TaskcDetailsController> {
                   controller.recur.value.isEmpty
                       ? 'None'
                       : controller.recur.value,
-                  ['None', 'daily', 'weekly', 'monthly', 'yearly'],
+                  [
+                    'None',
+                    'daily',
+                    'weekdays',
+                    'weekly',
+                    'biweekly',
+                    'monthly',
+                    'bimonthly',
+                    'quarterly',
+                    'semiannual',
+                    'yearly',
+                  ],
                   (value) {
                     controller.updateField(
                       controller.recur,
